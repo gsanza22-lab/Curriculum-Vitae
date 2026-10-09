@@ -2,41 +2,103 @@
 
 ## 1. Proiektuaren deskribapena
 
-Proiektu honetan Son Gokuren curriculum vitae digital bat sortu dut, **HTML eta CSS** erabiliz.
+Lan honetan Son Gokuren curriculum vitae digitala egin dut HTML eta CSS erabiliz.
 
-Webgunea bi zati nagusitan banatuta dago:
+CV bi zati nagusitan banatu dut:
 
-* Alboko barra, datu pertsonalekin, gaitasunekin, teknika nagusiekin, hizkuntzekin eta esaldi batekin.
-* Eduki nagusia, profil profesionalarekin, esperientziarekin, prestakuntzarekin, lorpenekin eta borroka nabarmenekin.
+* Ezkerreko zatia: argazkia, datu pertsonalak, gaitasunak, teknikak, hizkuntzak eta esaldi bat.
+* Eskuineko zatia: profil profesionala, esperientzia, prestakuntza, lorpenak eta borrokak.
 
-Proiektuaren helburua HTML eta CSS erabiliz web orri bat sortzea eta informazioa modu antolatuan erakustea da.
+Helburua CV-a txukun antolatzea eta ordenagailuan zein mugikorrean ondo ikustea izan da.
 
 
-## 2. HTMLaren egitura
+## 2. CV egin aurretik egindako analisia
 
-HTML dokumentua batez ere `aside` eta `main` elementuetan banatuta dago.
+Programatzen hasi aurretik, irakasleak emandako Son Gokuren CV eredua begiratu nuen eta zatitan banatu nuen.
 
-`<aside>` elementuan bigarren mailako informazioa dago:
+Nik honela banatu nuen:
 
-* Son Gokuren argazkia.
-* Datu pertsonalak.
-* Gaitasunak.
-* Teknika nagusiak.
-* Hizkuntzak.
-* Esaldi bat.
+1. **Alboko barra**
 
-`<main>` elementuak curriculumaren informazio nagusia dauka:
+   * Argazkia
+   * Datu pertsonalak
+   * Gaitasunak
+   * Teknika nagusiak
+   * Hizkuntzak
+   * Esaldia
 
-* Goiburua.
-* Profil profesionala.
-* Lan-esperientzia.
-* Prestakuntza eta entrenamendua.
-* Lorpenak.
-* Teknikak eta transformazioak.
-* Borroka nabarmenak.
-* Orri-oina.
+2. **Goiburua**
 
-Adibidez, datu pertsonalak `div` desberdinen bidez antolatu ditut:
+   * Izen-abizenak
+   * Lanbidea
+   * Kokapena
+   * Eskuragarritasuna
+
+3. **Profil profesionala**
+
+   * Profilaren izenburua
+   * Deskribapen laburra
+
+4. **Esperientzia**
+
+   * Hiru esperientzia txartel desberdin
+
+5. **Prestakuntza**
+
+   * Lau entrenamendu txartel
+
+6. **Lorpenak eta teknikak**
+
+   * Bi zati, pantaila handietan bata bestearen ondoan
+
+7. **Borroken taula**
+
+   * Aurkaria
+   * Emaitza
+   * Testuingurua
+
+Zati bakoitzean zer CSS erabili nezakeen ere pentsatu nuen. Adibidez, CV osoa antolatzeko Grid erabiltzea erabaki nuen eta barruko elementu batzuetan Flexbox erabiltzea.
+
+Atal errepikatuak ere bilatu nituen. Adibidez, esperientzia guztiek antzeko itxura dutenez, `.experience-card` klasea erabiltzen dut. Gauza bera egiten dut `.card`, `.skill` eta `.tag` klaseekin.
+
+### CV zatitan banatzea
+
+CV diseinua zatitzeko, GIMP erabiliz atal desberdinak markatu nituen. Horrela, HTML egin aurretik gutxi gorabehera zein egitura izango zuen ikusi ahal izan nuen.
+
+
+## 3. Diseinuaren planteamendua
+
+**Mobile first** egitea aukeratu dut.
+
+Lehenengo pantaila txikietan nola agertuko den pentsatu dut. Horregatik, `.cv-container` elementuak hasieran zutabe bakarra dauka:
+
+```css
+.cv-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+```
+
+Ondoren, pantaila handietan beste zutabe bat gehitzen dut. Horrela, alboko barra ezkerrean geratzen da eta CV-aren informazio nagusia eskuinean.
+
+Nire ustez, modu honetan errazagoa da mugikorreko diseinutik pantaila handiagora egokitzea.
+
+
+## 4. HTMLaren egitura
+
+HTML elementu semantikoekin antolatu dut. Erabili ditudan elementu nagusiak hauek dira:
+
+* `header`
+* `main`
+* `aside`
+* `section`
+* `article`
+* `footer`
+* `table`
+
+`aside` elementuan alboko informazioa dago eta `main` elementuan CV informazio nagusia.
+
+Adibidez, datu pertsonalak honela antolatu ditut:
 
 ```html
 <div class="data-item">
@@ -45,60 +107,56 @@ Adibidez, datu pertsonalak `div` desberdinen bidez antolatu ditut:
 </div>
 ```
 
-HTML elementu semantikoak ere erabili ditut, hala nola:
+Klaseak erabiltzen ditut antzeko elementuei estilo bera emateko.
 
-```html
-<header>
-<main>
-<aside>
-<section>
-<article>
-<footer>
-<table>
-```
 
-## 3. Goiburua eta CSSaren diseinua
+## 5. CSSaren oinarrizko ezaugarriak
 
-Goiburuan `header-card` klasea erabiltzen da. Bertan Son Gokuren izena, lanbidea, kokapena eta eskuragarritasuna agertzen dira.
+CSS-an aldagaiak erabili ditut `:root` barruan. Horrela, kolore batzuk eta beste balio batzuk behin definitu eta gero hainbat lekutan erabili ditzaket.
 
-Goiburuan atzeko irudi bat ere erabiltzen da:
-
-```css
-.header-card {
-  background-image:
-    linear-gradient(rgba(50, 98, 160, 0.1), rgba(50, 98, 160, 0.1)),
-    url("../mountain.png");
-}
-```
-
-CSSaren barruan `:root` erabili dut koloreak, tamainak eta beste balio batzuk aldagaietan gordetzeko:
+Adibidez:
 
 ```css
 :root {
   --color-primary: #0a3663;
   --color-secondary: #0066cc;
   --color-bg-body: #eef2f5;
+  --radius-card: 16px;
 }
 ```
 
-Ondoren, aldagai horiek CSSko beste ataletan erabiltzen ditut:
+Ondoren:
 
 ```css
 color: var(--color-primary);
+border-radius: var(--radius-card);
 ```
 
-Horrela, diseinuko balioak errazago aldatu daitezke.
+Horrez gain, `rem` unitatea erabili dut letra tamainetan eta tarte batzuetan.
+
+CSS hasieran ere `box-sizing: border-box` erabili dut:
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+```
+
+Horrela, elementuen tamainak kalkulatzea errazagoa da.
 
 
-## 4. Grid eta diseinu responsive-a
+## 6. Grid eta Flexbox
 
-Orriko elementuak antolatzeko **CSS Grid** erabili dut.
+CV egitura nagusia egiteko **CSS Grid** erabili dut.
 
-Edukiontzi nagusia:
+Hasieran zutabe bakarra dauka:
 
 ```css
 .cv-container {
   display: grid;
+  gap: var(--spacing-lg);
   grid-template-columns: 1fr;
 }
 ```
@@ -113,62 +171,68 @@ Pantaila handietan bi zutabe erabiltzen dira:
 }
 ```
 
-Horrela, alboko barrak 350px-ko zabalera dauka eta eduki nagusiak geratzen den espazioa hartzen du.
+Grid beste atal batzuetan ere erabili dut. Adibidez, esperientzia eta prestakuntza antolatzeko.
 
-Beste atal batzuetan ere `grid` erabiltzen dut, adibidez esperientzian:
-
-```css
-.experience-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-md);
-}
-```
-
-Eta prestakuntzan:
+Prestakuntzan `auto-fit` eta `minmax()` erabili ditut txartelak espazioaren arabera egokitzeko:
 
 ```css
 .training-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-md);
 }
 ```
 
-Pantaila txikietarako beste `@media` bat erabiltzen dut:
+Flexbox ere erabili dut. Adibidez, goiburuko datuak eta hizkuntzak lerrokatzeko:
 
 ```css
-@media (max-width: 420px) {
-  .header h1 {
-    font-size: var(--font-xl);
-  }
+.header-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm) var(--spacing-md);
 }
 ```
 
-Horrela, webgunea pantaila tamaina desberdinetara egokitzen da.
 
+## 7. Txartelak
 
-## 5. Txartelak, gaitasunak eta teknikak
-
-Informazioaren atal desberdinak banatzeko `.card` klasea erabiltzen dut:
+Atal desberdinak banatzeko `.card` klasea erabiltzen dut.
 
 ```css
 .card {
   background-color: var(--color-bg-card);
   border-radius: var(--radius-card);
   padding: var(--spacing-md);
-  box-shadow: 0 4px 6px rgba(255, 24, 24);
 }
 ```
 
-Txartelek atzeko kolorea, ertz biribilduak, barruko tartea eta itzala dituzte.
+Txartelek atzeko kolorea, ertzak biribilduak eta barruko tartea dituzte.
 
-Gaitasunak aurrerapen-barren bidez erakusten dira:
+Esperientzia eta prestakuntza txartel desberdinetan banatu ditut. Horri esker, informazioa ez da dena batera agertzen.
 
-```html
-<div class="progress-fill level-5"></div>
+
+## 8. Atzeko irudia eta gradientea
+
+Goiburuan atzeko irudi bat erabili dut:
+
+```css
+.header-card {
+  background-image:
+    linear-gradient(rgba(50, 98, 160, 0.1), rgba(50, 98, 160, 0.1)),
+    url("../mountain.png");
+}
 ```
 
-`level-5` mailak barra %100 betetzen du:
+Hemen bi gauza erabiltzen ditut: `mountain.png` irudia eta gradientea.
+
+Gradientea irudiaren gainean jartzen da eta horrela goiburuko testua hobeto ikusten da.
+
+
+## 9. Gaitasunak eta teknikak
+
+Gaitasunak barra baten bidez erakusten ditut.
+
+Adibidez, 5/5 mailak barra guztiz betetzen du:
 
 ```css
 .level-5 {
@@ -176,7 +240,7 @@ Gaitasunak aurrerapen-barren bidez erakusten dira:
 }
 ```
 
-`level-4` mailak %80 betetzen du:
+4/5 mailak %80 betetzen du:
 
 ```css
 .level-4 {
@@ -184,7 +248,7 @@ Gaitasunak aurrerapen-barren bidez erakusten dira:
 }
 ```
 
-Teknikak etiketa txikien bidez erakusten dira, `.tag` klasearekin:
+Teknikak berriz, etiketa txikiekin erakusten ditut:
 
 ```css
 .tag {
@@ -194,69 +258,76 @@ Teknikak etiketa txikien bidez erakusten dira, `.tag` klasearekin:
 }
 ```
 
-Erabilitako teknika batzuk Kamehameha, Genkidama, Kaio-ken, Shunkan Idō, Ultra Instinct eta Super Saiyan dira.
+Adibidez, Kamehameha, Genkidama, Kaio-ken, Shunkan Idō eta Ultra Instinct agertzen dira.
 
 
-## 6. Esperientzia, prestakuntza eta lorpenak
+## 10. Responsive diseinua
 
-Lan-esperientzia txartel desberdinetan banatuta dago.
+Webgunea responsive egiteko Media Query-ak erabili ditut.
 
-Hiru esperientzia gehitu ditut:
-
-* Lurraren defendatzailea.
-* Saiyan gerlaria.
-* Tenkaichi Budokaiko lehiakidea.
-
-Prestakuntza ere txartelen bidez antolatu dut:
-
-1. Maisu Roshi.
-2. Korin.
-3. Iparraldeko Kaio.
-4. Whis.
-
-Lorpen nabarmenen artean honako hauek daude:
-
-* 23. Tenkaichi Budokaiko txapelduna.
-* Super Saiyan lehenengo transformazioa.
-* Lurraren defentsa hainbat alditan.
-* Boterearen Txapelketan parte hartzea.
-* Ultra Instinct menperatzea.
-* Majin Buu-ren aurkako garaipena.
-
-Lorpenak eta teknikak `summary-grid` edukiontziaren barruan antolatzen dira:
+900px-tik gora CV-a bi zutabetan jartzen da:
 
 ```css
-.summary-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-lg);
+@media (min-width: 900px) {
+  .cv-container {
+    grid-template-columns: 350px 1fr;
+  }
 }
 ```
 
-Pantaila handietan bi atalak bata bestearen ondoan agertzen dira.
+Pantaila txikietan zutabe bakarra erabiltzen da.
+
+Gainera, 420px baino txikiagoak diren pantaila batzuetan izenburuaren tamaina txikitzen dut:
+
+```css
+@media (max-width: 420px) {
+  .header h1 {
+    font-size: var(--font-xl);
+  }
+}
+```
+
+Horrela, izenburua ez da handiegia geratzen mugikorrean.
+
+Taulari ere `overflow-x: auto` eman diot, pantaila txikian zabalera handiegia badauka horizontalki mugitu ahal izateko.
 
 
-## 7. Borroken taula eta koloreak
+## 11. `calc()` eta `min()` erabilera
 
-HTML taula bat sortu dut Son Gokuren borroka desberdinak erakusteko.
+Ariketan eskatzen ziren `calc()` eta `min()` funtzioak ere erabili ditut.
+
+`min()` erabiliz, edukiontziaren zabalera mugatzen dut:
+
+```css
+.cv-container {
+  width: min(95%, 1200px);
+}
+```
+
+Horrela, edukiontzia ez da 1200px baino handiagoa izango.
+
+`calc()` ere erabili dut:
+
+```css
+.quote {
+  margin-top: calc(var(--spacing-lg) + 1rem);
+}
+```
+
+Kasu honetan, goiko marjinari `1rem` gehitzen zaio.
+
+
+## 12. Taula
+
+Azken zatian Son Gokuren aurkari batzuk erakusten dituen taula bat egin dut.
 
 Taulak hiru zutabe ditu:
 
-* Aurkaria.
-* Emaitza.
-* Testuingurua.
+* Aurkaria
+* Emaitza
+* Testuingurua
 
-Adibidez:
-
-```html
-<tr>
-  <td>Piccolo Jr</td>
-  <td><span class="green-color">Victoria</span></td>
-  <td>23.º Tenkaichi Budokai</td>
-</tr>
-```
-
-Emaitzak kolore desberdinekin erakusten dira:
+Emaitzak koloreekin bereizten ditut:
 
 ```css
 .green-color {
@@ -272,22 +343,10 @@ Emaitzak kolore desberdinekin erakusten dira:
 }
 ```
 
-* Berdea: garaipena.
-* Gorria: porrota.
-* Horia: emaitza erabakigarria.
-
-Taularen edukiontziak `overflow-x: auto` erabiltzen du, pantaila txikietan taula hobeto ikusteko.
+Berdea garaipenentzat erabiltzen dut, gorria porrotentzat eta horia emaitza erabakigarriarentzat.
 
 
-## 8. Irudiak eta fitxategien antolaketa
-
-Irudi nagusiak `alt` atributua dauka:
-
-```html
-<img src="goku-avatar(1).jpg" alt="foto de goku" />
-```
-
-`alt` atributuak irudiaren deskribapena ematen du.
+## 13. Fitxategien antolaketa
 
 Proiektua honela antolatuta dago:
 
@@ -302,17 +361,18 @@ proiektua/
     └── styles.css
 ```
 
-`index.html` fitxategiak webgunearen egitura dauka.
+* `index.html`: CV-aren HTML egitura.
+* `styles.css`: diseinuaren CSS.
+* `mountain.png`: goiburuko atzeko irudia.
+* `goku-avatar(1).jpg`: Son Gokuren argazkia.
 
-`styles.css` fitxategiak webgunearen diseinua dauka.
 
-`mountain.png` eta `goku-avatar(1).jpg` irudiak webgunean erabiltzen dira.
+## 14. Ondorioa
 
+Lan honetan HTML eta CSS erabiliz CV digital bat egitea praktikatu dut.
 
-## 9. Ondorioa
+Batez ere Grid, Flexbox, Media Query, CSS aldagaiak, `rem`, `calc()`, `min()`, txartelak eta taulak erabili ditut.
 
-Proiektu honekin HTML eta CSS erabiliz web orri bat sortzen praktikatu dut.
+Nire helburua CV informazioa modu ordenatuan jartzea izan da eta, aldi berean, mugikorrean eta ordenagailuan ondo ikustea.
 
-Proiektuan HTML semantikoa, CSS Grid, Flexbox, CSS aldagaiak, Media Queries, taulak, zerrendak, txartelak, aurrerapen-barrak, etiketak eta irudiak erabili ditut.
-
-Azken emaitza Son Gokuren curriculum vitae digital bat da, informazioa modu antolatuan erakusten duena eta pantaila tamaina desberdinetara egokitzen dena.
+Azken emaitza Son Gokuren CV digital bat da.
